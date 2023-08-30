@@ -10,7 +10,7 @@ local keymap = vim.keymap -- for conciseness
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 -- clear search highlights
-keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
+keymap.set("n", "<Esc>", ":nohl<CR>", { desc = "Clear search highlights" })
 
 -- delete single character without copying into register
 -- keymap.set("n", "x", '"_x')
@@ -30,3 +30,23 @@ keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" 
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
+
+-- =================================================
+--   Copied from NvChad /lua/core/mappings.lua
+-- =================================================
+
+-- buffer management
+keymap.set("n", "<C-h>", "<C-w>h", { desc = "Window left" }) 
+keymap.set("n", "<C-l>", "<C-w>l", { desc = "Window right" }) 
+keymap.set("n", "<C-j>", "<C-w>j", { desc = "Window down" }) 
+keymap.set("n", "<C-k>", "<C-w>k", { desc = "Window up" }) 
+
+--save
+keymap.set("n", "<C-s>", "<cmd> w <CR>", { desc = "Save file" }) 
+
+--Copy all
+keymap.set("n", "<C-c>", "<cmd> %y+ <CR>", { desc = "Copy whole file" }) 
+
+-- new buffer
+keymap.set("n", "<leader>b", "<cmd> enew <CR>", { desc = "New buffer" }) 
+
