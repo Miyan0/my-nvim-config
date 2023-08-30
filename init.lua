@@ -1,5 +1,2 @@
-require("miyano.core.options")
-require("miyano.core.keymaps")
-require("miyano.core.colorscheme")
-
-
+require("miyano.core")
+require("miyano.lazy")
