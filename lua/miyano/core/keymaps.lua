@@ -36,17 +36,23 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 -- =================================================
 
 -- buffer management
-keymap.set("n", "<C-h>", "<C-w>h", { desc = "Window left" }) 
-keymap.set("n", "<C-l>", "<C-w>l", { desc = "Window right" }) 
-keymap.set("n", "<C-j>", "<C-w>j", { desc = "Window down" }) 
-keymap.set("n", "<C-k>", "<C-w>k", { desc = "Window up" }) 
+keymap.set("n", "<C-h>", "<C-w>h", { desc = "Window left" })
+keymap.set("n", "<C-l>", "<C-w>l", { desc = "Window right" })
+keymap.set("n", "<C-j>", "<C-w>j", { desc = "Window down" })
+keymap.set("n", "<C-k>", "<C-w>k", { desc = "Window up" })
 
 --save
-keymap.set("n", "<C-s>", "<cmd> w <CR>", { desc = "Save file" }) 
+keymap.set("n", "<C-s>", "<cmd> w <CR>", { desc = "Save file" })
 
 --Copy all
-keymap.set("n", "<C-c>", "<cmd> %y+ <CR>", { desc = "Copy whole file" }) 
+keymap.set("n", "<C-c>", "<cmd> %y+ <CR>", { desc = "Copy whole file" })
 
 -- new buffer
-keymap.set("n", "<leader>b", "<cmd> enew <CR>", { desc = "New buffer" }) 
+keymap.set("n", "<leader>b", "<cmd> enew <CR>", { desc = "New buffer" })
 
+keymap.set("n", "<C-`>", function()
+	require("nvterm.terminal").toggle("horizontal")
+end, { desc = "Toggle terminal" })
+keymap.set("t", "<C-`>", function()
+	require("nvterm.terminal").toggle("horizontal")
+end, { desc = "Toggle terminal" })
