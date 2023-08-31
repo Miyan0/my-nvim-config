@@ -1,54 +1,115 @@
 return {
-  "nvim-tree/nvim-tree.lua",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  config = function()
-    local nvimtree = require("nvim-tree")
+	"nvim-tree/nvim-tree.lua",
+	dependencies = { "nvim-tree/nvim-web-devicons" },
+	config = function()
+		local nvimtree = require("nvim-tree")
 
-    -- recommended settings from nvim-tree documentation
-    vim.g.loaded_netrw = 1
-    vim.g.loaded_netrwPlugin = 1
+		-- recommended settings from nvim-tree documentation
+		vim.g.loaded_netrw = 1
+		vim.g.loaded_netrwPlugin = 1
 
-    -- change color for arrows in tree to light blue
---    vim.cmd([[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]])
+		-- configure nvim-tree
+		nvimtree.setup({
+			hijack_cursor = true,
+			hijack_unnamed_buffer_when_opening = false,
+			sync_root_with_cwd = true,
+			update_focused_file = {
+				enable = true,
+				update_root = false,
+			},
+			view = {
+				adaptive_size = false,
+				side = "left",
+				width = 30,
+				preserve_window_proportions = true,
+			},
 
-    -- configure nvim-tree
-    nvimtree.setup({
-      view = {
-        width = 45,
-      },
-      -- change folder arrow icons
---      renderer = {
---        icons = {
---          glyphs = {
---            folder = {
---              arrow_closed = "", -- arrow when folder is closed
---              arrow_open = "", -- arrow when folder is open
---            },
---          },
---        },
---      },
-      -- disable window_picker for
-      -- explorer to work well with
-      -- window splits
-      actions = {
-        open_file = {
-          window_picker = {
-            enable = false,
-          },
-        },
-      },
-      filters = {
-        custom = { ".DS_Store" },
-      },
-      git = {
-        ignore = false,
-      },
-    })
+			git = {
+				ignore = false,
+				enable = true,
+			},
 
-    -- set keymaps
-    local keymap = vim.keymap -- for conciseness
+			filters = {
+				custom = { ".DS_Store" },
+				dotfiles = false,
+			},
+			diagnostics = {
+				enable = false,
+				show_on_dirs = false,
+				debounce_delay = 50,
+				icons = {
+					hint = "",
+					info = "",
+					warning = "",
+					error = "",
+				},
+			},
+			filesystem_watchers = {
+				enable = true,
+			},
+			actions = {
+				open_file = {
+					resize_window = true,
+				},
+			},
+			renderer = {
+				root_folder_label = false,
+				highlight_git = false,
+				highlight_opened_files = "name",
 
-    keymap.set("n", "<leader>e", "<cmd>NvimTreeFocus <CR>", { desc = "Focus NvimTree" })
-    keymap.set("n", "<C-n>", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle NvimTree" }) 
-  end,
+				indent_markers = {
+					enable = false,
+				},
+
+				icons = {
+					show = {
+						file = true,
+						folder = true,
+						folder_arrow = true,
+						git = false,
+					},
+
+					glyphs = {
+						default = "󰈚",
+						symlink = "",
+						folder = {
+							default = "",
+							empty = "",
+							empty_open = "",
+							open = "",
+							symlink = "",
+							symlink_open = "",
+							arrow_open = "",
+							arrow_closed = "",
+						},
+						git = {
+							unstaged = "",
+							-- unstaged = "",
+							staged = "",
+							unmerged = "",
+							renamed = "➜",
+							-- untracked = "",
+							untracked = "",
+							deleted = "",
+							ignored = "◌",
+						},
+					},
+				},
+			},
+			tab = {
+				sync = {
+					open = true,
+					close = true,
+				},
+			},
+			-- add other options here
+			--
+		})
+
+		-- set keymaps
+		local keymap = vim.keymap -- for conciseness
+
+		keymap.set("n", "<leader>e", "<cmd>NvimTreeFocus <CR>", { desc = "Focus NvimTree" })
+		keymap.set("n", "<C-n>", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle NvimTree" })
+	end,
 }
