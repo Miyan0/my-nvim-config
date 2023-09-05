@@ -1,12 +1,22 @@
+-- help ->:h bufferline-configuration
 return {
-  "akinsho/bufferline.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  version = "*",
-  -- diagnostics = "nvim_lsp" | "coc",
-  opts = { -- will call: require(bufferline).setup(opts)
-    options = {
-      mode = "tabs",
-      separator_style = "slant",
-    },
-  },
+	"akinsho/bufferline.nvim",
+	dependencies = { "nvim-tree/nvim-web-devicons" },
+	version = "*",
+	diagnostics = "nvim_lsp",
+	opts = { -- will call: require(bufferline).setup(opts)
+		options = {
+			mode = "buffers",
+			separator_style = "thick",
+			themable = true,
+			offsets = {
+				{
+					filetype = "NvimTree",
+					text = "File Explorer",
+					text_align = "left",
+					separator = false,
+				},
+			},
+		},
+	},
 }
