@@ -7,7 +7,11 @@ local keymap = vim.keymap -- for conciseness
 -- General Keymaps -------------------
 
 -- use jk to exit insert mode
-keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+-- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+
+keymap.set({ "n", "i" }, "<C-q>", "<cmd> qa <CR>", { desc = "Quit without saving" })
+
+keymap.set("n", "<leader>x", "<cmd> lua require('bufdelete').bufdelete(0, true) <CR>", { desc = "Close buffer" })
 
 -- clear search highlights
 keymap.set("n", "<Esc>", ":nohl<CR>", { desc = "Clear search highlights" })
@@ -40,7 +44,8 @@ keymap.set("n", "<C-h>", "<C-w>h", { desc = "Window left" })
 keymap.set("n", "<C-l>", "<C-w>l", { desc = "Window right" })
 keymap.set("n", "<C-j>", "<C-w>j", { desc = "Window down" })
 keymap.set("n", "<C-k>", "<C-w>k", { desc = "Window up" })
-
+keymap.set("n", "<tab>", "<cmd>BufferLineCycleNext <CR>", { desc = "Next buffer" })
+keymap.set("n", "<S-tab>", "<cmd>BufferLineCyclePrev <CR>", { desc = "Previous buffer" })
 --save
 keymap.set("n", "<C-s>", "<cmd> w <CR>", { desc = "Save file" })
 

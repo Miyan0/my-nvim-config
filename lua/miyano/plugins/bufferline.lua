@@ -8,7 +8,13 @@ return {
 		options = {
 			mode = "buffers",
 			separator_style = "thick",
+			color_icons = true, -- whether or not to add the filetype icon highlights
 			themable = true,
+			hover = {
+				enabled = true,
+				delay = 200,
+				reveal = { "close" },
+			},
 			offsets = {
 				{
 					filetype = "NvimTree",

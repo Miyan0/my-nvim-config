@@ -8,7 +8,7 @@ return {
 		-- configure lualine with modified theme
 		lualine.setup({
 			options = {
-				theme = "catppuccin",
+				-- theme = "aquarium",
 				icon_enabled = true,
 				component_separators = "|",
 				section_separators = "",

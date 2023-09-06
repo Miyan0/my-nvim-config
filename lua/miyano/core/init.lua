@@ -1,2 +1,2 @@
-require("miyano.core.keymaps")
+require("miyano.core.mappings")
 require("miyano.core.options")

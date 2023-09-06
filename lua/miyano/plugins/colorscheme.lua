@@ -28,4 +28,5 @@ M.nightowl = {
 	end,
 }
 
+-- return M.aquarium
 return M.catppuccin
