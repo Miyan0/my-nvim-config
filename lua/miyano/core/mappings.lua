@@ -39,13 +39,16 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 --   Copied from NvChad /lua/core/mappings.lua
 -- =================================================
 
--- buffer management
+-- window management
 keymap.set("n", "<C-h>", "<C-w>h", { desc = "Window left" })
 keymap.set("n", "<C-l>", "<C-w>l", { desc = "Window right" })
 keymap.set("n", "<C-j>", "<C-w>j", { desc = "Window down" })
 keymap.set("n", "<C-k>", "<C-w>k", { desc = "Window up" })
+
+-- buffer management
 keymap.set("n", "<tab>", "<cmd>BufferLineCycleNext <CR>", { desc = "Next buffer" })
 keymap.set("n", "<S-tab>", "<cmd>BufferLineCyclePrev <CR>", { desc = "Previous buffer" })
+
 --save
 keymap.set("n", "<C-s>", "<cmd> w <CR>", { desc = "Save file" })
 
@@ -58,6 +61,7 @@ keymap.set("n", "<leader>b", "<cmd> enew <CR>", { desc = "New buffer" })
 keymap.set("n", "<C-`>", function()
 	require("nvterm.terminal").toggle("horizontal")
 end, { desc = "Toggle terminal" })
+
 keymap.set("t", "<C-`>", function()
 	require("nvterm.terminal").toggle("horizontal")
 end, { desc = "Toggle terminal" })

@@ -3,7 +3,7 @@
 return {
 
 	"inkarkat/vim-ReplaceWithRegister", -- replace with register contents using motion (gr + motion)
-	"catppuccin/nvim",
+	-- "catppuccin/nvim",
 	"frenzyexists/aquarium-vim",
 	"oxfist/night-owl.nvim",
 	"famiu/bufdelete.nvim",

@@ -2,25 +2,17 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		"jose-elias-alvarez/typescript.nvim",
 		"hrsh7th/cmp-nvim-lsp",
-		{
-			"smjonas/inc-rename.nvim",
-			config = true,
-		},
+		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
+
 	config = function()
 		-- import lspconfig plugin
 		local lspconfig = require("lspconfig")
+		local util = require("lspconfig.util")
 
 		-- import cmp-nvim-lsp plugin
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
-		-- import typescript plugin
-		local typescript = require("typescript")
-
-		-- import gopls plugin
-		-- local gopls = require("gopls")
 
 		local keymap = vim.keymap -- for conciseness
 
@@ -99,12 +91,13 @@ return {
 			on_attach = on_attach,
 		})
 
+		-- lspconfig["gopls"].setup({})
 		lspconfig["gopls"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 			cmd = { "gopls" },
 			filetypes = { "go", "gomod", "gowork", "gotmpl", "tmpl" },
-			-- root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+			root_dir = util.root_pattern("go.work", "go.mod", ".git"),
 			settings = {
 				completeUnimported = true,
 				usePlaceholders = true,
@@ -115,11 +108,9 @@ return {
 		})
 
 		-- configure typescript server with plugin
-		typescript.setup({
-			server = {
-				capabilities = capabilities,
-				on_attach = on_attach,
-			},
+		lspconfig["tsserver"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
 		})
 
 		-- configure css server
