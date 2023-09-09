@@ -7,6 +7,7 @@ return {
 	"frenzyexists/aquarium-vim",
 	"oxfist/night-owl.nvim",
 	"famiu/bufdelete.nvim",
+	"rebelot/kanagawa.nvim",
 
 	-- "github/copilot.vim",
 }

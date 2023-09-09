@@ -4,4 +4,3 @@ vo.shiftwidth = 2
 vo.softtabstop = 2
 
 -- require("core.plugins.dap.dap").setup()
-print("ftplugin loaded go.lua")

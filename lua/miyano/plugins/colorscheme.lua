@@ -1,8 +1,42 @@
 local M = {}
 
+M.kanagawa = {
+	"rebelot/kanagawa.nvim",
+	lazy = false,
+	priority = 1000,
+	name = "kanagawa",
+	config = function()
+		require("kanagawa").setup({
+			undercurl = true, -- enable undercurls
+			commentStyle = { italic = true },
+			functionStyle = {},
+			keywordStyle = { italic = true },
+			statementStyle = { bold = true },
+			typeStyle = {},
+			transparent = false, -- do not set background color
+			dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+			terminalColors = true, -- define vim.g.terminal_color_{0,17}
+			colors = { -- add/modify theme and palette colors
+				palette = {},
+				theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+			},
+			overrides = function(colors) -- add/modify highlights
+				return {}
+			end,
+			theme = "wave", -- Load "wave" theme when 'background' option is not set
+			background = { -- map the value of 'background' option to a theme
+				dark = "wave", -- try "dragon" !
+				light = "lotus",
+			},
+		})
+		vim.cmd([[colorscheme kanagawa]])
+	end,
+}
+
 M.catppuccin = {
 	"catppuccin/nvim",
 	priority = 1000,
+	lazy = false,
 	name = "catppuccin",
 	config = function()
 		-- require("catppuccin").setup({
@@ -32,6 +66,7 @@ M.catppuccin = {
 M.aquarium = {
 	"frenzyexists/aquarium-vim",
 	priority = 1000,
+	lazy = false,
 	name = "aquarium",
 	config = function()
 		vim.cmd([[colorscheme aquarium]])
@@ -105,6 +140,7 @@ M.monokeipro = {
 M.nightfly = {
 	"bluz71/vim-nightfly-guicolors",
 	priority = 1000,
+	lazy = false,
 	name = "nightfly",
 	config = function()
 		vim.cmd([[colorscheme nightfly]])
@@ -114,9 +150,20 @@ M.nightfly = {
 M.codedark = {
 	"tomasiser/vim-code-dark",
 	priority = 1000,
+	lazy = false,
 	name = "codedark",
 	config = function()
 		vim.cmd([[colorscheme codedark]])
+	end,
+}
+
+M.embark = {
+	"embark-theme/vim",
+	priority = 1000,
+	lazy = false,
+	name = "embark",
+	config = function()
+		vim.cmd([[colorscheme embark]])
 	end,
 }
 
@@ -126,3 +173,5 @@ return M.catppuccin
 -- return M.nightowl
 -- return M.nightfly
 -- return M.codedark
+-- return M.embark
+-- return M.kanagawa

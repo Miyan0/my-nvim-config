@@ -13,6 +13,8 @@ local cmp_ui = {
 	-- selected_item_bg = "colored", -- colored / simple
 }
 
+local icons = require("miyano.utils.icons").kind_icons
+
 -- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
 local has_words_before = function()
 	unpack = unpack or table.unpack
@@ -74,7 +76,6 @@ return {
 
 			window = {
 				completion = {
-					-- side_padding = (cmp_style ~= "atom" and cmp_style ~= "atom_colored") and 1 or 0,
 					side_padding = (cmp_style ~= "atom" and cmp_style ~= "atom_colored") and 1 or 0,
 					-- winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel",
 					-- winhighlight = "Normal:CmpNormal",
@@ -87,7 +88,7 @@ return {
 				},
 			},
 			-- view = {
-			-- 	entries = "native",
+			-- 	entries = "custom",
 			-- },
 
 			mapping = cmp.mapping.preset.insert({
@@ -123,6 +124,7 @@ return {
 					end
 				end, { "i", "s" }),
 			}),
+
 			-- sources for autocompletion
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp", keyword_length = 3 }, -- lsp
@@ -137,7 +139,28 @@ return {
 					maxwidth = 50,
 					mode = "symbol_text",
 					ellipsis_char = "...",
+
+					menu = {
+						buffer = "[buf]",
+						nvim_lsp = "[LSP]",
+						nvim_lua = "[api]",
+						path = "[path]",
+						luasnip = "[snip]",
+					},
 				}),
+				-- format = function(entry, vim_item)
+				-- 	-- Kind icons
+				-- 	vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+				-- 	-- Source
+				-- 	vim_item.menu = ({
+				-- 		nvim_lsp = "[LSP]",
+				-- 		buffer = "[Buffer]",
+				-- 		luasnip = "[LuaSnip]",
+				-- 		path = "[path]",
+				-- 		nvim_lua = "[Lua]",
+				-- 	})[entry.source.name]
+				-- 	return vim_item
+				-- end,
 			},
 		})
 	end,

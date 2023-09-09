@@ -15,7 +15,7 @@ opt.wrap = false
 
 -- search settings
 opt.ignorecase = true
-opt.smartcase = true  -- case insensive unless search word is capitalize
+opt.smartcase = true -- case insensive unless search word is capitalize
 
 -- cursor line
 opt.cursorline = true
@@ -37,4 +37,3 @@ opt.splitbelow = true
 
 -- let neovim consider 'dash' as part of the word
 opt.iskeyword:append("-")
-

@@ -1,7 +1,6 @@
 local M = {}
 
 M.on_attach_lsp = function(client, bufnr)
-	print("on attach", client)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 	local keymap = vim.keymap -- for conciseness
 

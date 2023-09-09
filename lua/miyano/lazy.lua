@@ -1,3 +1,4 @@
+print("lazy.lua loaded")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -13,9 +14,9 @@ vim.opt.rtp:prepend(lazypath)
 
 -- list here all plugins you want lazy to install
 require("lazy").setup({ { import = "miyano.plugins" }, { import = "miyano.plugins.lsp" } }, {
-	install = {
-		colorscheme = { "catppuccin" },
-	},
+	-- install = {
+	-- 	colorscheme = { "catppuccin" },
+	-- },
 
 	-- check for updates on startup, but don't notify us
 	checker = {
