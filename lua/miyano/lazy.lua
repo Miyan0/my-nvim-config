@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 -- list here all plugins you want lazy to install
 require("lazy").setup({ { import = "miyano.plugins" }, { import = "miyano.plugins.lsp" } }, {
 	install = {
-		colorscheme = { "aquarium" },
+		colorscheme = { "catppuccin" },
 	},
 
 	-- check for updates on startup, but don't notify us

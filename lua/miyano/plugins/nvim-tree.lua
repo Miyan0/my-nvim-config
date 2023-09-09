@@ -58,7 +58,7 @@ return {
 				highlight_opened_files = "name",
 
 				indent_markers = {
-					enable = false,
+					enable = true,
 				},
 
 				icons = {
