@@ -8,6 +8,13 @@
       {
         "language": "lua",
         "path": "./lua.json"
+      },
+      {
+        "language": [
+          "go",
+          "javascript"
+        ],
+        "path": "./common-headers.json"
       }
     ]
   }
