@@ -15,7 +15,7 @@ return {
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 		-- enable keybinds only for when lsp server available
-		local on_attach = require("miyano.configs.mappings").on_attach
+		local on_attach = require("miyano.configs.mappings").on_attach_lsp
 
 		-- used to enable autocompletion (assign to every lsp server config)
 		local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -76,7 +76,7 @@ return {
 		lspconfig["emmet_ls"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
-			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss" },
+			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "tmpl", "gohtml" },
 		})
 
 		-- configure lua server (with special settings)

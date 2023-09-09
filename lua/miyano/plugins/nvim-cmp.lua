@@ -1,3 +1,8 @@
+--================================================================
+-- nvim-cmp.lua
+--================================================================
+-- lua/miyano/plugins/nvim-cmp.lua
+-- created: 2023-09-09
 -- Used for autocomplete in neovim
 -- h: cmp_docs
 
@@ -5,8 +10,15 @@ local cmp_ui = {
 	icons = true,
 	lspkind_text = true,
 	style = "default", -- default/flat_light/flat_dark/atom/atom_colored
-	selected_item_bg = "colored", -- colored / simple
+	-- selected_item_bg = "colored", -- colored / simple
 }
+
+-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
+local has_words_before = function()
+	unpack = unpack or table.unpack
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
 
 local cmp_style = cmp_ui.style
 
@@ -26,26 +38,29 @@ end
 return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
+
 	dependencies = {
 		"hrsh7th/cmp-buffer", -- source for text in buffer
 		"hrsh7th/cmp-path", -- source for file system paths
 		"onsails/lspkind.nvim",
 		"L3MON4D3/LuaSnip", -- snippet engine
 		"saadparwaiz1/cmp_luasnip", -- for autocompletion
-		"rafamadriz/friendly-snippets", -- useful snippets
+		"L3MON4D3/LuaSnip",
 	},
+
 	config = function()
 		local cmp = require("cmp")
-
 		local luasnip = require("luasnip")
-
 		local lspkind = require("lspkind")
+
+		-- lua format
+		require("luasnip.loaders.from_lua").load()
+		require("luasnip.loaders.from_lua").lazy_load({ paths = "./snippets/lua_snip" })
 
 		-- load vs-code like snippets from plugins (e.g. friendly-snippets)
 		require("luasnip.loaders.from_vscode").lazy_load()
+		require("luasnip.loaders.from_vscode").lazy_load({ paths = "./snippets/vsc_snip" })
 
-		-- vim.opt.completeopt = "menu,menuone,noselect"
-		-- vim.opt.completeopt = "menu,menuone"
 		cmp.setup({
 			completion = {
 				completeopt = "menu,menuone,preview,noselect",
@@ -59,6 +74,7 @@ return {
 
 			window = {
 				completion = {
+					-- side_padding = (cmp_style ~= "atom" and cmp_style ~= "atom_colored") and 1 or 0,
 					side_padding = (cmp_style ~= "atom" and cmp_style ~= "atom_colored") and 1 or 0,
 					-- winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel",
 					-- winhighlight = "Normal:CmpNormal",
@@ -88,30 +104,24 @@ return {
 				["<Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
-					elseif require("luasnip").expand_or_jumpable() then
-						vim.fn.feedkeys(
-							vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true),
-							""
-						)
+					elseif luasnip.expand_or_locally_jumpable() then
+						luasnip.expand_or_jump()
+					elseif has_words_before() then
+						cmp.complete()
 					else
 						fallback()
 					end
-				end, {
-					"i",
-					"s",
-				}),
+				end, { "i", "s" }),
+
 				["<S-Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
-					elseif require("luasnip").jumpable(-1) then
-						vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+					elseif luasnip.jumpable(-1) then
+						luasnip.jump(-1)
 					else
 						fallback()
 					end
-				end, {
-					"i",
-					"s",
-				}),
+				end, { "i", "s" }),
 			}),
 			-- sources for autocompletion
 			sources = cmp.config.sources({
