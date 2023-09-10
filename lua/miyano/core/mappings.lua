@@ -65,3 +65,21 @@ end, { desc = "Toggle terminal" })
 keymap.set("t", "<C-`>", function()
 	require("nvterm.terminal").toggle("horizontal")
 end, { desc = "Toggle terminal" })
+keymap.set(
+	"i",
+	"<F2>",
+	'<cmd>lua require("renamer").rename()<cr>',
+	{ noremap = true, silent = true, desc = "LSP Rename" }
+)
+keymap.set(
+	"n",
+	"<leader>rn",
+	'<cmd>lua require("renamer").rename()<cr>',
+	{ noremap = true, silent = true, desc = "LSP Rename" }
+)
+keymap.set(
+	"v",
+	"<leader>rn",
+	'<cmd>lua require("renamer").rename()<cr>',
+	{ noremap = true, silent = true, desc = "LSP Rename" }
+)

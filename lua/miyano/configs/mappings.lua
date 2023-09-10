@@ -23,8 +23,8 @@ M.on_attach_lsp = function(client, bufnr)
 	-- see available code actions, in visual mode will apply to selection
 	opts.desc = "See available code actions"
 	keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-	opts.desc = "Smart rename"
-	keymap.set("n", "<leader>rn", ":IncRename ", opts) -- smart rename
+	-- opts.desc = "Smart rename"
+	-- keymap.set("n", "<leader>rn", ":IncRename ", opts) -- smart rename
 
 	opts.desc = "Show buffer diagnostics"
 	keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
