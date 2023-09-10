@@ -27,6 +27,7 @@ M.kind_icons = {
 	Event = "",
 	Operator = "󰆕",
 	TypeParameter = "󰅲",
+	Copilot = "",
 }
 
 -- copied from lspkind
@@ -56,6 +57,7 @@ M.symbols = {
 	Event = "",
 	Operator = "󰆕",
 	TypeParameter = "",
+	Copilot = "",
 }
 
 return M

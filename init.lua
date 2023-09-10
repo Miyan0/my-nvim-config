@@ -1,4 +1,3 @@
-print("root init.lua loaded")
 require("miyano.core")
 require("miyano.lazy")
 

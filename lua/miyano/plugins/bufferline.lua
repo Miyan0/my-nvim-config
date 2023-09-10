@@ -7,7 +7,7 @@ return {
 	opts = { -- will call: require(bufferline).setup(opts)
 		options = {
 			mode = "buffers",
-			separator_style = "thick",
+			separator_style = "thin",
 			color_icons = true, -- whether or not to add the filetype icon highlights
 			themable = true,
 			hover = {

@@ -3,11 +3,8 @@
 return {
 
 	"inkarkat/vim-ReplaceWithRegister", -- replace with register contents using motion (gr + motion)
-	-- "catppuccin/nvim",
-	"frenzyexists/aquarium-vim",
-	"oxfist/night-owl.nvim",
 	"famiu/bufdelete.nvim",
-	"rebelot/kanagawa.nvim",
 
+	require("miyano.plugins.themes.catppuccin"),
 	-- "github/copilot.vim",
 }

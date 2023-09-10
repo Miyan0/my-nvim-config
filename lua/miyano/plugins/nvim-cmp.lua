@@ -19,7 +19,8 @@ local icons = require("miyano.utils.icons").kind_icons
 local has_words_before = function()
 	unpack = unpack or table.unpack
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+	return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
+	-- return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 local cmp_style = cmp_ui.style
@@ -48,13 +49,19 @@ return {
 		"L3MON4D3/LuaSnip", -- snippet engine
 		"saadparwaiz1/cmp_luasnip", -- for autocompletion
 		"L3MON4D3/LuaSnip",
+		{
+			"zbirenbaum/copilot-cmp",
+			config = function()
+				print("copilot_cmp loaded")
+				require("copilot_cmp").setup()
+			end,
+		},
 	},
 
 	config = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
 		local lspkind = require("lspkind")
-
 		-- lua format
 		require("luasnip.loaders.from_lua").load()
 		require("luasnip.loaders.from_lua").lazy_load({ paths = "./snippets/lua_snip" })
@@ -97,18 +104,18 @@ return {
 				["<C-d>"] = cmp.mapping.scroll_docs(-4),
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
-				["<C-e>"] = cmp.mapping.abort(), -- close completion window
+				["<Esc>"] = cmp.mapping.abort(), -- close completion window
 				["<CR>"] = cmp.mapping.confirm({
 					behavior = cmp.ConfirmBehavior.Insert,
 					select = true,
 				}),
 				["<Tab>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
-						cmp.select_next_item()
+					if cmp.visible() and has_words_before() then
+						cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
 					elseif luasnip.expand_or_locally_jumpable() then
 						luasnip.expand_or_jump()
-					elseif has_words_before() then
-						cmp.complete()
+					-- elseif has_words_before() then
+					-- 	cmp.complete()
 					else
 						fallback()
 					end
@@ -129,38 +136,41 @@ return {
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp", keyword_length = 3 }, -- lsp
 				{ name = "luasnip" }, -- snippets
+				{ name = "copilot" }, -- lsp
 				{ name = "buffer", keyword_length = 5 }, -- text within current buffer
 				{ name = "path" }, -- file system paths
 			}),
 
 			-- configure lspkind for vs-code like icons
 			formatting = {
-				format = lspkind.cmp_format({
-					maxwidth = 50,
-					mode = "symbol_text",
-					ellipsis_char = "...",
-
-					menu = {
-						buffer = "[buf]",
-						nvim_lsp = "[LSP]",
-						nvim_lua = "[api]",
-						path = "[path]",
-						luasnip = "[snip]",
-					},
-				}),
-				-- format = function(entry, vim_item)
-				-- 	-- Kind icons
-				-- 	vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-				-- 	-- Source
-				-- 	vim_item.menu = ({
+				-- format = lspkind.cmp_format({
+				-- 	maxwidth = 50,
+				-- 	mode = "symbol_text",
+				-- 	ellipsis_char = "...",
+				--
+				-- 	menu = {
+				-- 		buffer = "[buf]",
 				-- 		nvim_lsp = "[LSP]",
-				-- 		buffer = "[Buffer]",
-				-- 		luasnip = "[LuaSnip]",
+				-- 		nvim_lua = "[api]",
+				-- 		copilot = "[copilot]",
 				-- 		path = "[path]",
-				-- 		nvim_lua = "[Lua]",
-				-- 	})[entry.source.name]
-				-- 	return vim_item
-				-- end,
+				-- 		luasnip = "[snip]",
+				-- 	},
+				-- }),
+				format = function(entry, vim_item)
+					--  Kind icons
+					vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+					-- Source
+					vim_item.menu = ({
+						nvim_lsp = "[LSP]",
+						buffer = "[Buffer]",
+						luasnip = "[LuaSnip]",
+						path = "[path]",
+						nvim_lua = "[Lua]",
+						copiloot = "[copilot]",
+					})[entry.source.name]
+					return vim_item
+				end,
 			},
 		})
 	end,
