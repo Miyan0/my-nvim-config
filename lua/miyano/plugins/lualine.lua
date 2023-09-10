@@ -5,16 +5,13 @@ return {
 	config = function()
 		local lualine = require("lualine")
 		local lazy_status = require("lazy.status") -- to configure lazy pending updates count
-		local copilot_status = require("copilot_status")
-		local copilot_enabled = copilot_status.enabled()
-		print("copilot status? = ", copilot_status.status_string())
 
 		-- configure lualine with modified theme
 		lualine.setup({
 			options = {
 				-- theme = "aquarium",
 				icon_enabled = true,
-				component_separators = "|",
+				component_separators = "",
 				section_separators = "",
 			},
 			sections = {
@@ -28,10 +25,14 @@ return {
 					{ "encoding" },
 					{ "fileformat" },
 					{
-						copilot_status.status_string(),
-						-- cond = copilot_enabled,
+						function()
+							return require("copilot_status").status_string()
+						end,
+						cnd = function()
+							return require("copilot_status").enabled()
+						end,
+						color = { fg = "#94e2d5" },
 					},
-
 					{ "filetype" },
 				},
 			},
