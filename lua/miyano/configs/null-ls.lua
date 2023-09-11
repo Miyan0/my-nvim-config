@@ -6,7 +6,16 @@ local opts = {
 		null_ls.builtins.formatting.gofumpt,
 		null_ls.builtins.formatting.goimports_reviser,
 		null_ls.builtins.formatting.golines,
+
+
+    -- lua
+    null_ls.builtins.formatting.stylua,
+
+    -- json
+    null_ls.builtins.formatting.jq,
+
 	},
+  -- format on save
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
       vim.api.nvim_clear_autocmds({
