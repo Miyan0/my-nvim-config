@@ -1,4 +1,3 @@
 # Things To do
 
-- [x] Implement search and replace
-- [x] Add yank highlight
+- [ ] test using a go project to see what's missing.

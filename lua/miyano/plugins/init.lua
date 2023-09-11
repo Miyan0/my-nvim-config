@@ -2,7 +2,7 @@
 
 return {
 
-	"inkarkat/vim-ReplaceWithRegister", -- replace with register contents using motion (gr + motion)
+	-- "inkarkat/vim-ReplaceWithRegister", -- replace with register contents using motion (gr + motion)
 	"famiu/bufdelete.nvim",
 
 	require("miyano.plugins.themes.catppuccin"),

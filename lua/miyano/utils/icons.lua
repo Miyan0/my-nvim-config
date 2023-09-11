@@ -1,7 +1,7 @@
 local M = {}
 -- copied from nvchad
 --
-M.kind_icons = {
+M.vscode_icons = {
 	Text = "",
 	Method = "󰆧",
 	Function = "󰊕",
@@ -31,7 +31,7 @@ M.kind_icons = {
 }
 
 -- copied from lspkind
-M.symbols = {
+M.lspkind_icons = {
 	Text = "󰉿",
 	Method = "󰆧",
 	Function = "󰊕",

@@ -13,7 +13,7 @@ local cmp_ui = {
 	-- selected_item_bg = "colored", -- colored / simple
 }
 
-local icons = require("miyano.utils.icons").kind_icons
+local icons = require("miyano.utils.icons").vscode_icons
 
 -- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
 local has_words_before = function()

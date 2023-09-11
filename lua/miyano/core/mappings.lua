@@ -9,7 +9,7 @@ local keymap = vim.keymap -- for conciseness
 -- use jk to exit insert mode
 -- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
-keymap.set({ "n", "i" }, "<C-q>", "<cmd> qa <CR>", { desc = "Quit without saving" })
+-- keymap.set({ "n", "i" }, "<C-q>", "<cmd> qa <CR>", { desc = "Quit without saving" })
 
 keymap.set("n", "<leader>x", "<cmd> lua require('bufdelete').bufdelete(0, true) <CR>", { desc = "Close buffer" })
 
@@ -50,7 +50,7 @@ keymap.set("n", "<tab>", "<cmd>BufferLineCycleNext <CR>", { desc = "Next buffer"
 keymap.set("n", "<S-tab>", "<cmd>BufferLineCyclePrev <CR>", { desc = "Previous buffer" })
 
 --save
-keymap.set("n", "<C-s>", "<cmd> w <CR>", { desc = "Save file" })
+-- keymap.set("n", "<C-s>", "<cmd> w <CR>", { desc = "Save file" })
 
 --Copy all
 keymap.set("n", "<C-c>", "<cmd> %y+ <CR>", { desc = "Copy whole file" })
