@@ -9,6 +9,44 @@ return {
   -- delete buffers while keeping window layout
   "famiu/bufdelete.nvim",
 
+  -- linting and formatting
+  {
+    "jose-elias-alvarez/null-ls.nvim", -- configure formatters & linters
+    event = { "BufReadPre", "BufNewFile" },
+    ft = { "go", "lua" },
+    opts = function()
+      return require("miyano.configs.null-ls")
+    end,
+  },
+
+  -- debugging (common)
+  {
+    "mfussenegger/nvim-dap",
+  },
+
+  -- go debugging
+  {
+    "leoluz/nvim-dap-go",
+    ft = "go",
+    dependencies = "mfussenegger/nvim-dap",
+    config = function(_, opts)
+      require("dap-go").setup(opts)
+      require("miyano.configs.mappings").dap()
+      require("miyano.configs.mappings").dap_go()
+    end,
+  },
+  {
+    "olexsmir/gopher.nvim",
+    ft = "go",
+    config = function(_, opts)
+      require("gopher").setup(opts)
+      require("miyano.configs.mappings").gopher()
+    end,
+    build = function()
+      vim.cmd([[silent! GoInstallDeps]])
+    end,
+  },
+
   -- maximize window
   {
     "szw/vim-maximizer",
@@ -146,5 +184,16 @@ return {
         },
       }
     end,
+  },
+
+  -- keybinding remainder
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 500
+    end,
+    opts = {},
   },
 }
