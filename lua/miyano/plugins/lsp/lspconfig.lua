@@ -15,7 +15,7 @@ return {
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
     -- enable keybinds only for when lsp server available
-    local on_attach = require("miyano.configs.mappings").lsp_mappigs
+    local on_attach = require("miyano.configs.lsp-mappings").lsp_mappigs
 
     -- used to enable autocompletion (assign to every lsp server config)
     -- local capabilities = cmp_nvim_lsp.default_capabilities()

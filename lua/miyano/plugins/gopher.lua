@@ -10,7 +10,7 @@ return {
   ft = "go",
   config = function(_, opts)
     require("gopher").setup(opts)
-    require("miyano.configs.mappings").gopher()
+    require("miyano.configs.lsp-mappings").gopher()
   end,
   build = function()
     vim.cmd([[silent! GoInstallDeps]])

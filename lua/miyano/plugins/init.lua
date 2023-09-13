@@ -15,8 +15,9 @@ return {
   },
 
   require("miyano.plugins.themes.catppuccin"),
-  -- require("miyano.plugins.themes.ayu"),
+  -- require("miyano.plugins.themes.github"),
+  -- require("miyano.plugins.themes.kanagawa"),
   -- require("miyano.plugins.themes.oxocarbon"),
   -- require("miyano.plugins.themes.aquarium"),
-  -- "github/copilot.vim",
+  -- require("miyano.plugins.themes.nightfox"),
 }

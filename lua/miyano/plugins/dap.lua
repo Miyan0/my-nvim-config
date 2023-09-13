@@ -17,8 +17,8 @@ return {
     dependencies = "mfussenegger/nvim-dap",
     config = function(_, opts)
       require("dap-go").setup(opts)
-      require("miyano.configs.mappings").dap()
-      require("miyano.configs.mappings").dap_go()
+      require("miyano.configs.lsp-mappings").dap()
+      require("miyano.configs.lsp-mappings").dap_go()
     end,
   },
 }

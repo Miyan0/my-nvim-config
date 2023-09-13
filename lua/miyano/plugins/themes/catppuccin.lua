@@ -22,7 +22,7 @@ return {
           return {
             PmenuSel = { bg = colors.mauve, fg = colors.base },
             TabLineSel = { bg = colors.mauve, fg = colors.mauve },
-            Cursor = { bg = colors.mauve, fg = colors.base },
+            -- Cursor = { bg = colors.mauve, fg = colors.base },
             -- FloatBorder = { bg = "#3c3836" },
             -- NormalFloat = { bg = colors.mauve, fg = colors.base },
           }
@@ -34,7 +34,7 @@ return {
         shade = "dark",
         percentage = 0.15,
       },
-      transparent_background = true,
+      transparent_background = false,
       term_colors = true,
 
       styles = {
@@ -85,11 +85,6 @@ return {
           enabled = true,
           enable_ui = true, -- enable nvim-dap-ui
         },
-        neotree = {
-          enabled = true,
-          show_root = true,
-          transparent_panel = false,
-        },
         which_key = true,
         indent_blankline = {
           enabled = true,
@@ -116,6 +111,7 @@ return {
         fidget = false,
       },
     })
-    vim.cmd([[colorscheme catppuccin-macchiato]])
+    -- vim.cmd([[colorscheme catppuccin-macchiato]])
+    vim.cmd([[colorscheme catppuccin-mocha]])
   end,
 }
