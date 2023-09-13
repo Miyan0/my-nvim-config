@@ -47,6 +47,21 @@ return {
     end,
   },
 
+  -- {
+  --   "ray-x/go.nvim",
+  --   ft = { "go", "gomod", "gosum", "gowork" },
+  --   dependencies = {
+  --     {
+  --       "ray-x/guihua.lua",
+  --       build = "cd lua/fzy && make",
+  --     },
+  --   },
+  --   config = function()
+  --     require("miyano.configs.go")
+  --   end,
+  --   build = ':lua require("go.install").update_all_sync()',
+  -- },
+  --
   -- maximize window
   {
     "szw/vim-maximizer",
@@ -124,6 +139,19 @@ return {
     "numToStr/Comment.nvim",
     event = { "BufRead", "BufNewFile" },
     config = function()
+      require("Comment").setup({
+        ignore = "^$",
+        toggler = {
+          line = "<leader>/",
+          block = "<c-/>",
+        },
+        opleader = {
+          line = "<leader>/",
+          block = "<c-/>",
+        },
+      })
+    end,
+    --[[ config = function()
       local keymap = vim.keymap -- for conciseness
 
       -- copied from nvchad mappings
@@ -137,7 +165,7 @@ return {
         "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
         { desc = "Toggle Comment" }
       )
-    end,
+    end, ]]
   },
 
   -- todos

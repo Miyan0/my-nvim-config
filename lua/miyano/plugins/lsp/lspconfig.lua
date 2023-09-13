@@ -18,11 +18,17 @@ return {
     local on_attach = require("miyano.configs.mappings").lsp_mappigs
 
     -- used to enable autocompletion (assign to every lsp server config)
-    local capabilities = cmp_nvim_lsp.default_capabilities()
+    -- local capabilities = cmp_nvim_lsp.default_capabilities()
+    -- modfied from TJ lsp video
+    local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+    -- added this line from emmet_ls config example
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     -- Change the Diagnostic symbols in the sign column (gutter)
     -- (not in youtube nvim video)
-    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+    -- local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
@@ -32,6 +38,7 @@ return {
     lspconfig["html"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      filetypes = { "html", "tmpl", "gohtml" },
     })
 
     -- configure gopls
@@ -44,7 +51,7 @@ return {
       settings = {
         gopls = {
           -- see ftdetect/go.lua.
-          ["build.templateExtensions"] = { "gohtml", "html", "gotmpl", "tmpl" },
+          -- ["build.templateExtensions"] = { "gohtml", "html", "gotmpl", "tmpl" },
           gofumpt = true,
         },
         completeUnimported = true,
@@ -71,6 +78,7 @@ return {
     lspconfig["tailwindcss"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      filetypes = { "html", "tmpl" },
     })
 
     -- configure emmet language server

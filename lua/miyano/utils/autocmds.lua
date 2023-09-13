@@ -9,6 +9,15 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
 ------------------------------------------------------------------
+-- TUTORIAL Tj
+------------------------------------------------------------------
+-- https://www.youtube.com/watch?v=ekMIIAqTZ34
+-- to see all autocmds: :au
+-- to see one particular autocmd: :au BufEnter
+
+-- autocmd("BufEnter", { command = "echo 'hello'" })
+
+------------------------------------------------------------------
 -- NVTREE
 ------------------------------------------------------------------
 
@@ -28,15 +37,15 @@ local augroup = vim.api.nvim_create_augroup
 
 -- Close Nvimtree before quit nvim
 autocmd("FileType", {
-	pattern = { "NvimTree" },
-	callback = function(args)
-		autocmd("VimLeavePre", {
-			callback = function()
-				vim.api.nvim_buf_delete(args.buf, { force = true })
-				return true
-			end,
-		})
-	end,
+  pattern = { "NvimTree" },
+  callback = function(args)
+    autocmd("VimLeavePre", {
+      callback = function()
+        vim.api.nvim_buf_delete(args.buf, { force = true })
+        return true
+      end,
+    })
+  end,
 })
 
 -- -- Open new buffer if only Nvimtree is open
@@ -60,24 +69,24 @@ autocmd("FileType", {
 
 -- Don't auto comment new line
 autocmd("BufEnter", {
-	command = [[set formatoptions-=cro]],
+  command = [[set formatoptions-=cro]],
 })
 
 -- Auto resize panes when resizing nvim window
 autocmd("VimResized", {
-	pattern = "*",
-	command = "tabdo wincmd =",
+  pattern = "*",
+  command = "tabdo wincmd =",
 })
 
 -- Go to last loc when opening a buffer
 autocmd("BufReadPost", {
-	callback = function()
-		local mark = vim.api.nvim_buf_get_mark(0, '"')
-		local lcount = vim.api.nvim_buf_line_count(0)
-		if mark[1] > 0 and mark[1] <= lcount then
-			pcall(vim.api.nvim_win_set_cursor, 0, mark)
-		end
-	end,
+  callback = function()
+    local mark = vim.api.nvim_buf_get_mark(0, '"')
+    local lcount = vim.api.nvim_buf_line_count(0)
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
+  end,
 })
 
 ------------------------------------------------------------------
@@ -88,70 +97,60 @@ autocmd("BufReadPost", {
 ------------------------------------------------------------------
 -- UTILS
 ------------------------------------------------------------------
---vim.api.nvim_create_autocmd("TextYankPost", {
---	group = vim.api.nvim_create_augroup("highlight_yank"),
---	desc = "Hightlight selection on yank",
---	pattern = "*",
---	callback = function()
---		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 })
---	end,
---})
 
 -- Highlight on yank
 autocmd("TextYankPost", {
-	command = "silent! lua vim.highlight.on_yank({higroup='IncSearch', timeout=200})",
-	--	group = augroup("YankHighlight"),
-	-- command = "silent! lua vim.highlight.on_yank({higroup='YankVisual', timeout=500})",
-	group = augroup("YankHighlight", { clear = true }),
+  command = "silent! lua vim.highlight.on_yank({higroup='IncSearch', timeout=200})",
+  group = augroup("YankHighlight", { clear = true }),
 })
 
 -- Disable status column in the following files
 autocmd({ "FileType", "BufWinEnter" }, {
-	callback = function()
-		local ft_ignore = {
-			"man",
-			"help",
-			"neo-tree",
-			"starter",
-			"TelescopePrompt",
-			"Trouble",
-			"NvimTree",
-			"nvcheatsheet",
-			"dapui_watches",
-			"dap-repl",
-			"dapui_console",
-			"dapui_stacks",
-			"dapui_breakpoints",
-			"dapui_scopes",
-		}
+  callback = function()
+    local ft_ignore = {
+      "man",
+      "help",
+      "neo-tree",
+      "starter",
+      "TelescopePrompt",
+      "Trouble",
+      "NvimTree",
+      "nvcheatsheet",
+      "dapui_watches",
+      "dap-repl",
+      "dapui_console",
+      "dapui_stacks",
+      "dapui_breakpoints",
+      "dapui_scopes",
+    }
 
-		local b = vim.api.nvim_get_current_buf()
-		local f = vim.api.nvim_buf_get_option(b, "filetype")
-		for _, e in ipairs(ft_ignore) do
-			if f == e then
-				vim.api.nvim_win_set_option(0, "statuscolumn", "")
-				return
-			end
-		end
-	end,
+    local b = vim.api.nvim_get_current_buf()
+    local f = vim.api.nvim_buf_get_option(b, "filetype")
+    for _, e in ipairs(ft_ignore) do
+      if f == e then
+        vim.api.nvim_win_set_option(0, "statuscolumn", "")
+        return
+      end
+    end
+  end,
 })
 
 -- Show cursor line only in active window
 autocmd({ "InsertLeave", "WinEnter" }, {
-	pattern = "*",
-	command = "set cursorline",
-	group = augroup("CursorLine", { clear = true }),
+  pattern = "*",
+  command = "set cursorline",
+  group = augroup("CursorLine", { clear = true }),
 })
 autocmd({ "InsertEnter", "WinLeave" }, {
-	pattern = "*",
-	command = "set nocursorline",
-	group = augroup("CursorLine", { clear = true }),
+  pattern = "*",
+  command = "set nocursorline",
+  group = augroup("CursorLine", { clear = true }),
 })
 
 -- Restore cursor
 autocmd({ "BufReadPost" }, {
-	pattern = { "*" },
-	callback = function()
-		vim.api.nvim_exec('silent! normal! g`"zv', false)
-	end,
+  pattern = { "*" },
+  callback = function()
+    vim.api.nvim_exec('silent! normal! g`"zv', false)
+  end,
 })

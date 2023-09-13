@@ -23,7 +23,7 @@ M.lsp_mappigs = function(client, bufnr)
 
   -- see available code actions, in visual mode will apply to selection
   opts.desc = "See available code actions"
-  keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+  keymap.set({ "n", "v" }, "<leader>.", vim.lsp.buf.code_action, opts)
 
   -- opts.desc = "LSP rename all"
   keymap.set("n", "<leader>ra", vim.lsp.buf.rename, opts) -- smart rename

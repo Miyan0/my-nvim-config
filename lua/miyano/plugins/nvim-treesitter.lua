@@ -9,6 +9,15 @@ return {
     config = function()
       -- import nvim-treesitter plugin
       local treesitter = require("nvim-treesitter.configs")
+      --[[ local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+      parser_config.gotmpl = {
+        install_info = {
+          url = "https://github.com/ngalaiko/tree-sitter-go-template",
+          files = { "src/parser.c" },
+        },
+        filetype = "gotmpl",
+        used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl" },
+      } ]]
 
       -- configure treesitter
       treesitter.setup({ -- enable syntax highlighting
@@ -36,6 +45,7 @@ return {
           "vim",
           "gitignore",
           "go",
+          "gosum",
           "gomod",
           "gowork",
           "python",
