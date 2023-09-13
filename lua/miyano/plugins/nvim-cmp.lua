@@ -52,7 +52,6 @@ return {
     {
       "zbirenbaum/copilot-cmp",
       config = function()
-        print("copilot_cmp loaded")
         require("copilot_cmp").setup()
       end,
     },

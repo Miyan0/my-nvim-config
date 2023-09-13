@@ -6,8 +6,6 @@
 -- Place plugins which require almost no configurations here.
 
 return {
-  -- delete buffers while keeping window layout
-  "famiu/bufdelete.nvim",
 
   -- linting and formatting
   {

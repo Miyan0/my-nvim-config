@@ -57,6 +57,11 @@ keymap.set("n", "<C-c>", "<cmd> %y+ <CR>", { desc = "Copy whole file" })
 -- new buffer
 keymap.set("n", "<leader>b", "<cmd> enew <CR>", { desc = "New buffer" })
 
+-- inline annotations
+keymap.set("n", "<leader>bi", function()
+  require("nvim-biscuits").toggle_biscuits()
+end, { desc = "󰆘 Toggle context" })
+
 -- terminal
 keymap.set("n", "<C-`>", function()
   require("nvterm.terminal").toggle("horizontal")

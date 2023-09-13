@@ -154,3 +154,14 @@ autocmd({ "BufReadPost" }, {
     vim.api.nvim_exec('silent! normal! g`"zv', false)
   end,
 })
+
+-- Nvimtree open file on creation
+local function open_file_created()
+  require("nvim-tree.api").events.subscribe("FileCreated", function(file)
+    vim.cmd("edit " .. file.fname)
+  end)
+end
+
+autocmd({ "VimEnter" }, {
+  callback = open_file_created,
+})
