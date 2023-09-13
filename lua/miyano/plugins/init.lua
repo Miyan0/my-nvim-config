@@ -6,6 +6,17 @@ return {
   -- delete buffers while keeping window layout
   "famiu/bufdelete.nvim",
 
+  -- maximize window
+  {
+    "szw/vim-maximizer",
+    keys = {
+      { "<leader>sm", "<cmd>MaximizerToggle<CR>" },
+    },
+  },
+
   require("miyano.plugins.themes.catppuccin"),
+  -- require("miyano.plugins.themes.ayu"),
+  -- require("miyano.plugins.themes.oxocarbon"),
+  -- require("miyano.plugins.themes.aquarium"),
   -- "github/copilot.vim",
 }

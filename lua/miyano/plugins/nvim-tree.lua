@@ -1,3 +1,9 @@
+--================================================================
+-- nvim-tree.lua
+--================================================================
+-- lua/miyano/plugins/nvim-tree.lua
+-- created: 2023-09-13
+
 return {
   "nvim-tree/nvim-tree.lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -30,7 +36,7 @@ return {
       },
 
       filters = {
-        custom = { ".DS_Store" },
+        custom = { ".DS_Store", "^.git$" },
         dotfiles = false,
       },
 
