@@ -37,3 +37,8 @@ opt.splitbelow = true
 
 -- let neovim consider 'dash' as part of the word
 opt.iskeyword:append("-")
+
+-- keep at least 8 chars at the bottom of the buffer
+opt.scrolloff = 8
+opt.signcolumn = "yes"
+opt.isfname:append("@-@")

@@ -5,8 +5,8 @@ M.lsp_mappigs = function(client, bufnr)
   local keymap = vim.keymap -- for conciseness
 
   -- set keybinds
-  opts.desc = "Show LSP references"
-  keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+  -- opts.desc = "Show LSP references"
+  -- keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
   opts.desc = "Go to declaration"
   keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration

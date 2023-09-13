@@ -27,6 +27,9 @@ return {
 
         -- json
         null_ls.builtins.formatting.jq,
+
+        -- html formatter
+        null_ls.builtins.formatting.djhtml,
       },
       -- format on save
       on_attach = function(client, bufnr)

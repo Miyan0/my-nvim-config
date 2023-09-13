@@ -10,6 +10,10 @@
         "path": "./lua.json"
       },
       {
+        "language": "go",
+        "path": "./go.json"
+      },
+      {
         "language": [
           "go",
           "javascript"
