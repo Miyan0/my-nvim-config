@@ -13,6 +13,7 @@ return {
       { "<leader>sm", "<cmd>MaximizerToggle<CR>" },
     },
   },
+  "catppuccin/nvim",
 
   require("miyano.plugins.themes.catppuccin"),
   -- require("miyano.plugins.themes.github"),
