@@ -52,6 +52,10 @@ keymap.set("n", "<C-c>", "<cmd> %y+ <CR>", { desc = "Copy whole file" })
 -- new buffer
 keymap.set("n", "<leader>b", "<cmd> enew <CR>", { desc = "New buffer" })
 
+-- quickfix
+keymap.set("n", "<leader>c", "<cmd> copen <CR>", { desc = "Open quickfix window" })
+keymap.set("n", "<leader>cc", "<cmd> cclose <CR>", { desc = "Close quickfix window" })
+
 -- inline annotations
 keymap.set("n", "<leader>bi", function()
   require("nvim-biscuits").toggle_biscuits()

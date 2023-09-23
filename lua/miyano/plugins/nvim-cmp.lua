@@ -136,8 +136,8 @@ return {
       -- sources for autocompletion
       sources = cmp.config.sources({
         { name = "nvim_lsp", keyword_length = 3 }, -- lsp
-        { name = "luasnip",  keyword_length = 3 }, -- snippets
         { name = "copilot",  keyword_length = 3 }, -- lsp
+        { name = "luasnip",  keyword_length = 3 }, -- snippets
         { name = "buffer",   keyword_length = 5 }, -- text within current buffer
         { name = "path" },                     -- file system paths
       }),
@@ -164,11 +164,10 @@ return {
           -- Source
           vim_item.menu = ({
             nvim_lsp = "[LSP]",
-            buffer = "[Buffer]",
+            copilot = "[copilot]",
             luasnip = "[LuaSnip]",
+            buffer = "[Buffer]",
             path = "[path]",
-            nvim_lua = "[Lua]",
-            copiloot = "[copilot]",
           })[entry.source.name]
           return vim_item
         end,

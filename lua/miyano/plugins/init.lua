@@ -15,10 +15,12 @@ return {
   },
   "catppuccin/nvim",
 
+  -- require("miyano.plugins.themes.monokaipro"),
   require("miyano.plugins.themes.catppuccin"),
   -- require("miyano.plugins.themes.github"),
   -- require("miyano.plugins.themes.kanagawa"),
   -- require("miyano.plugins.themes.oxocarbon"),
   -- require("miyano.plugins.themes.aquarium"),
   -- require("miyano.plugins.themes.nightfox"),
+  -- require("miyano.plugins.themes.tokyonight"),
 }
