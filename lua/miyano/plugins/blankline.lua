@@ -4,10 +4,6 @@
 --- https://github.com/lukas-reineke/indent-blankline.nvim
 local M = {}
 
-local highlight = {
-  "CursorColumn",
-  "Whitespace",
-}
 local hl_list = {}
 
 for i, color in pairs({ "#662121", "#767621", "#216631", "#325a5e", "#324b7b", "#562155" }) do
@@ -28,11 +24,11 @@ M.blankline = {
         tab_char = "│",
       },
       -- whitespace = {
-      --   highlight = highlight,
-      --   remove_blankline_trail = true,
+      --   highlight = hl_list,
+      --   remove_blankline_trail = false,
       -- },
       scope = {
-        -- highlight = highlight,
+        -- highlight = hl_list,
         show_start = false,
         show_end = false,
         injected_languages = true,
