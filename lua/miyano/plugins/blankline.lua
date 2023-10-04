@@ -1,54 +1,52 @@
 -- ----------------------------------------------------------------------
---- HEAD
+--- BlankLine
 --- ----------------------------------------------------------------------
 --- https://github.com/lukas-reineke/indent-blankline.nvim
+local M = {}
 
-local hl_list = {}
+local highlight = {
+  "CursorColumn",
+  "Whitespace",
+}
 
-for i, color in pairs({ "#662121", "#767621", "#216631", "#325a5e", "#324b7b", "#562155" }) do
-  local name = "IndentBlanklineIndent" .. i
-  vim.api.nvim_set_hl(0, name, { fg = color })
-  table.insert(hl_list, name)
-end
-
-return {
+M.blankline = {
   "lukas-reineke/indent-blankline.nvim",
   main = "ibl",
   lazy = false,
   config = function()
     require("ibl").setup({
-      -- extra stuff
-      char = "│",
-      -- char = "▎",
-      char_highlight_list = hl_list,
-      space_char_highlight_list = hl_list,
-
-      filetype_exclude = {
-        "help",
-        "terminal",
-        "lspinfo",
-        "TelescopePrompt",
-        "TelescopeResults",
-        "nvcheatsheet",
-        "lsp-installer",
-        "norg",
-        "Empty",
-        "",
+      indent = {
+        highlight = highlight,
+        char = "│",
+        tab_char = "│",
       },
-
-      buftype_exclude = { "terminal", "nofile" },
-      show_end_of_line = true,
-      show_foldtext = true,
-      show_trailing_blankline_indent = false,
-      show_first_indent_level = true,
-      show_current_context = true,
-      show_current_context_start = true,
+      -- whitespace = {
+      --   highlight = highlight,
+      --   remove_blankline_trail = true,
+      -- },
+      scope = {
+        -- highlight = highlight,
+        show_start = false,
+        show_end = false,
+        injected_languages = true,
+      },
+      exclude = {
+        filetypes = {
+          "help",
+          "terminal",
+          "lspinfo",
+          "TelescopePrompt",
+          "TelescopeResults",
+          "nvcheatsheet",
+          "lsp-installer",
+          "norg",
+          "Empty",
+          "",
+        },
+        buftypes = { "terminal", "nofile" },
+      },
     })
   end,
 }
 
--- require("indent-blankline").setup({
--- 	-- extra stuff
--- 	char_highlight_list = hl_list,
--- 	-- extra stuff
--- }),
+return M.blankline

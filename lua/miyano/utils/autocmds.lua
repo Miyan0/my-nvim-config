@@ -136,16 +136,16 @@ autocmd({ "FileType", "BufWinEnter" }, {
 })
 
 -- Show cursor line only in active window
-autocmd({ "InsertLeave", "WinEnter" }, {
-  pattern = "*",
-  command = "set cursorline",
-  group = augroup("CursorLine", { clear = true }),
-})
-autocmd({ "InsertEnter", "WinLeave" }, {
-  pattern = "*",
-  command = "set nocursorline",
-  group = augroup("CursorLine", { clear = true }),
-})
+-- autocmd({ "InsertLeave", "WinEnter" }, {
+--   pattern = "*",
+--   command = "set cursorline",
+--   group = augroup("CursorLine", { clear = true }),
+-- })
+-- autocmd({ "InsertEnter", "WinLeave" }, {
+--   pattern = "*",
+--   command = "set nocursorline",
+--   group = augroup("CursorLine", { clear = true }),
+-- })
 
 -- Restore cursor
 autocmd({ "BufReadPost" }, {
