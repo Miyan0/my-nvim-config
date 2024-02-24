@@ -36,7 +36,7 @@ return {
       },
 
       filters = {
-        custom = { ".DS_Store", "^.git$", ".idea", ".venv", "*.egg-info", "__pycache__" },
+        custom = { ".DS_Store", "^.git$", ".idea", ".venv", "*.egg-info", "__pycache__", ".*_templ.go" },
         dotfiles = false,
       },
 

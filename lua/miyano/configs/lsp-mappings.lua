@@ -1,5 +1,31 @@
 local M = {}
 
+-- format *.templ files
+local custom_format = function()
+  if vim.bo.filetype == "templ" then
+    local bufnr = vim.api.nvim_get_current_buf()
+    local filename = vim.api.nvim_buf_get_name(bufnr)
+    local cmd = "templ fmt " .. vim.fn.shellescape(filename)
+
+    vim.fn.jobstart(cmd, {
+      on_exit = function()
+        -- Reload the buffer only if it's still the current buffer
+        if vim.api.nvim_get_current_buf() == bufnr then
+          vim.cmd("e!")
+        end
+      end,
+    })
+  else
+    vim.lsp.buf.format()
+  end
+end
+
+-- local on_attach = function(client, bufnr)
+-- local opts = { buffer = bufnr, remap = false }
+-- other configuration options
+-- vim.keymap.set("n", "<leader>lf", custom_format, opts)
+-- end
+
 M.lsp_mappigs = function(client, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
   local keymap = vim.keymap -- for conciseness
@@ -7,6 +33,9 @@ M.lsp_mappigs = function(client, bufnr)
   -- set keybinds
   -- opts.desc = "Show LSP references"
   -- keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+
+  -- format *.templ files (2024-02-21)
+  vim.keymap.set("n", "<leader>lf", custom_format, opts)
 
   opts.desc = "Go to declaration"
   keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
@@ -35,10 +64,10 @@ M.lsp_mappigs = function(client, bufnr)
   keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
   opts.desc = "Go to previous diagnostic"
-  keymap.set("n", " dj", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
+  keymap.set("n", "gj", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
 
   opts.desc = "Go to next diagnostic"
-  keymap.set("n", " dk", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
+  keymap.set("n", "gk", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
 
   opts.desc = "Show documentation for what is under cursor"
   keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor

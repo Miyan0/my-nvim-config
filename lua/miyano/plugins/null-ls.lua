@@ -8,7 +8,7 @@
 return {
   "jose-elias-alvarez/null-ls.nvim",
   event = { "BufReadPre", "BufNewFile" },
-  ft = { "go", "lua", "json", "python" },
+  ft = { "go", "lua", "json", "python", "sql" },
 
   config = function()
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -20,7 +20,7 @@ return {
       sources = {
 
         -- golang
-        null_ls.builtins.formatting.gofumpt,
+        -- null_ls.builtins.formatting.gofumpt,
         null_ls.builtins.formatting.goimports_reviser,
         null_ls.builtins.formatting.golines,
 
@@ -35,8 +35,14 @@ return {
         -- json
         -- null_ls.builtins.formatting.jq,
 
+        -- python template
+        null_ls.builtins.formatting.djlint.with({
+          filetypes = { "html" },
+        }),
+
         -- html formatter
-        null_ls.builtins.formatting.djhtml,
+        -- null_ls.builtins.formatting.djhtml,
+        null_ls.builtins.formatting.prettier,
       },
       -- format on save
       on_attach = function(client, bufnr)

@@ -49,12 +49,12 @@ return {
     "L3MON4D3/LuaSnip",       -- snippet engine
     "saadparwaiz1/cmp_luasnip", -- for autocompletion
     "L3MON4D3/LuaSnip",
-    {
-      "zbirenbaum/copilot-cmp",
-      config = function()
-        require("copilot_cmp").setup()
-      end,
-    },
+    -- {
+    --   "zbirenbaum/copilot-cmp",
+    --   config = function()
+    --     require("copilot_cmp").setup()
+    --   end,
+    -- },
   },
   config = function()
     local cmp = require("cmp")

@@ -9,8 +9,8 @@ return {
 
     config = function()
       require("copilot").setup({
-        suggestion = { enabled = false }, -- let copilot-cmp do its things
-        panel = { enabled = false },
+        suggestion = { enabled = true }, -- let copilot-cmp do its things
+        panel = { enabled = true },
         filetypes = {
           markdown = true,
           help = true,
@@ -22,7 +22,7 @@ return {
           javascriptreact = true,
           html = true,
           css = true,
-          golang = true,
+          go = true,
         },
       })
     end,

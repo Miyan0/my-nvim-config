@@ -38,7 +38,22 @@ return {
     lspconfig["html"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      filetypes = { "html", "tmpl", "gohtml" },
+      filetypes = { "html", "tmpl", "gohtml", "templ" },
+    })
+
+    -- htmx
+    lspconfig.htmx.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+      filetypes = { "html", "templ" },
+    })
+
+    -- swift config
+    lspconfig["sourcekit"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "swift" },
+      root_dir = util.root_pattern("Package.swift", ".git"),
     })
 
     -- configure gopls
@@ -53,13 +68,21 @@ return {
           -- see ftdetect/go.lua.
           -- ["build.templateExtensions"] = { "gohtml", "html", "gotmpl", "tmpl" },
           gofumpt = true,
-        },
-        completeUnimported = true,
-        usePlaceholders = true,
-        analyses = {
-          unusedparams = true,
+          completeUnimported = true,
+          usePlaceholders = true,
+          staticcheck = true,
+          analyses = {
+            unusedparams = true,
+            nilness = true,
+            unusedwrite = true,
+          },
         },
       },
+    })
+
+    lspconfig["templ"].setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
     })
 
     lspconfig["pyright"].setup({
@@ -78,20 +101,46 @@ return {
     lspconfig["cssls"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      settings = {
+        css = {
+          validate = true,
+          lint = {
+            unknownAtRules = "ignore",
+          },
+        },
+
+        scss = {
+          validate = true,
+          lint = {
+            unknownAtRules = "ignore",
+          },
+        },
+      },
     })
 
     -- configure tailwindcss server
     lspconfig["tailwindcss"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      filetypes = { "html", "tmpl" },
+      filetypes = { "html", "tmpl", "templ" },
+      init_options = { userLanguages = { templ = "html" } },
     })
 
     -- configure emmet language server
     lspconfig["emmet_ls"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "tmpl", "gohtml" },
+      filetypes = {
+        "html",
+        "typescriptreact",
+        "javascriptreact",
+        "css",
+        "sass",
+        "scss",
+        "tmpl",
+        "gohtml",
+        "templ",
+      },
     })
 
     -- configure lua server (with special settings)
